@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carolina Zapata · Portafolio</title>
+<meta name="description" content="Portafolio de Carolina Zapata, diseñadora gráfica en formación. Cuento historias donde la luz, el espacio y la composición cobran vida.">
+<meta name="theme-color" content="#101010">
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Cormorant+Garamond:wght@300;400&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;800&family=Playfair+Display:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<noscript><style>.t-stagger-line{opacity:1 !important;transform:none !important;filter:none !important;}
+</style></noscript>
+<style>
+:root{
+  --noir:#101010; --alabastro:#F3EFEA; --rojo:#D62828; --amarillo:#F2B705; --blanco:#FFFFFF; --gris:#8C8C92;
+  --contacto:#0D0D0D;
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --inter:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+  --cond:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --u:1px; --p:0;
+
+  /* Transiciones (transitions.dev) */
+  --dropdown-open-dur:250ms; --dropdown-close-dur:150ms; --dropdown-pre-scale:0.97; --dropdown-closing-scale:0.99; --dropdown-ease:cubic-bezier(0.22,1,0.36,1);
+  --acc-expand:250ms; --acc-collapse:250ms; --acc-ease:cubic-bezier(0.22,1,0.36,1);
+  --stagger-dur:500ms; --stagger-distance:12px; --stagger-stagger:40ms; --stagger-blur:3px; --stagger-ease:cubic-bezier(0.22,1,0.36,1);
+}
+/* En escritorio 1 "u" = 1 px del diseño de 1440 px; todo escala con la pantalla */
+@media (min-width:1024px){ :root{ --u:calc(min(100vw,1920px) / 1440); } }
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:4.5rem; }
+body{ margin:0; font-family:var(--sans); font-size:15px; line-height:1.5; color:var(--blanco); background:var(--noir); overflow-x:clip; -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; }
+h1,h2,h3{ margin:0; font-weight:400; line-height:1.1; }
+p{ margin:0; }
+ul{ list-style:none; margin:0; padding:0; }
+:focus-visible{ outline:3px solid var(--amarillo); outline-offset:3px; }
+.saltar{ position:absolute; left:1rem; top:-4rem; z-index:100; background:var(--amarillo); color:var(--noir); padding:.75rem 1rem; font-weight:600; }
+.saltar:focus{ top:1rem; }
+.solo-lector{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.seccion{ position:relative; }
+.mini{ font-family:var(--sans); font-size:max(10px,calc(var(--u)*11)); font-weight:500; letter-spacing:.16em; text-transform:uppercase; }
+.nav-h a{ display:inline-flex; align-items:center; min-height:44px; text-decoration:none; font-family:var(--sans); font-size:max(10px,calc(var(--u)*11)); font-weight:500; letter-spacing:.16em; text-transform:uppercase; }
+.nav-h a:hover{ text-decoration:underline; text-underline-offset:5px; }
+.nav-h a[aria-current="true"]{ font-weight:800; }
+.logo-seccion{ display:block; }
+.logo-seccion img{ width:100%; height:auto; }
+
+/* ---------- Barra del celular + Menu dropdown ---------- */
+.barra-movil{ position:fixed; inset:0 0 auto 0; z-index:50; height:4.5rem; display:flex; align-items:center; justify-content:space-between; padding:.5rem 1.25rem; background:rgba(16,16,16,.9); backdrop-filter:blur(8px); color:var(--blanco); }
+.barra-movil img{ width:44px; height:44px; }
+.menu-boton{ min-width:44px; min-height:44px; padding:0 1rem; font:inherit; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:inherit; background:transparent; border:1px solid currentColor; border-radius:999px; cursor:pointer; }
+.menu{ position:fixed; inset:4.5rem 0 auto 0; background:var(--noir); color:var(--blanco); padding:.5rem 1.25rem 1.5rem; }
+.menu a{ display:flex; align-items:center; min-height:48px; text-decoration:none; font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,.18); }
+.menu a:hover{ color:var(--amarillo); }
+.menu:not(.is-open):not(.is-closing){ visibility:hidden; }
+
+.t-dropdown {
+  transform-origin: top left;
+  transform: scale(var(--dropdown-pre-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dropdown-open-dur) var(--dropdown-ease),
+    opacity   var(--dropdown-open-dur) var(--dropdown-ease);
+  will-change: transform, opacity;
+}
+.t-dropdown[data-origin="top-right"]     { transform-origin: top right; }
+.t-dropdown.is-open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.t-dropdown.is-closing {
+  transform: scale(var(--dropdown-closing-scale));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--dropdown-close-dur) var(--dropdown-ease),
+    opacity   var(--dropdown-close-dur) var(--dropdown-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-dropdown { transition: none !important; }
+}
+
+/* ---------- Texts reveal ---------- */
+.t-stagger-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(var(--stagger-distance));
+  filter: blur(var(--stagger-blur));
+  transition:
+    opacity   var(--stagger-dur) var(--stagger-ease),
+    transform var(--stagger-dur) var(--stagger-ease),
+    filter    var(--stagger-dur) var(--stagger-ease);
+  will-change: transform, opacity, filter;
+}
+.t-stagger-line--2 { transition-delay: var(--stagger-stagger); }
+.t-stagger-line--3 { transition-delay: calc(var(--stagger-stagger) * 2); }
+.t-stagger.is-shown .t-stagger-line {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-stagger-line { transition: none !important; }
+}
+
+/* ---------- Acordeon (Accordion expand) ---------- */
+.t-acc-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--acc-collapse) var(--acc-ease);
+}
+.t-acc[data-open="true"] .t-acc-panel {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--acc-expand) var(--acc-ease);
+}
+.t-acc-panel-inner {
+  overflow: hidden;
+  opacity: 0;
+  filter: blur(2px);
+  transition:
+    opacity var(--acc-collapse) var(--acc-ease),
+    filter var(--acc-collapse) var(--acc-ease);
+}
+.t-acc[data-open="true"] .t-acc-panel-inner {
+  opacity: 1;
+  filter: blur(0);
+  transition:
+    opacity var(--acc-expand) var(--acc-ease),
+    filter var(--acc-expand) var(--acc-ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-acc-panel, .t-acc-panel-inner { transition: none !important; }
+}
+
+/* =====================================================
+   CELULAR (por defecto)
+   ===================================================== */
+/* 01 Home */
+.hero{ min-height:100svh; background:var(--noir); display:flex; align-items:flex-end; overflow:hidden; }
+.hero-foto{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:62% center; }
+.hero::after{ content:""; position:absolute; inset:0; background:rgba(16,16,16,.25); }
+.titulo-home{ position:relative; z-index:2; padding:0 1.25rem 3.5rem; font-family:var(--serif); font-size:2.5rem; line-height:1; }
+.hero-top,.logo-seccion,.hero-pie{ display:none; }
+
+/* 02 Inicio */
+.inicio{ background:var(--alabastro); color:var(--noir); padding:6rem 1.25rem 3.5rem; }
+.ini-lateral,.ini-ciudad{ display:none; }
+.ini-oficio{ display:flex; flex-direction:column; font-size:11px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:1.25rem; }
+.ini-oficio strong{ font-weight:800; }
+.ini-nombre{ font-family:var(--serif); font-size:clamp(2.6rem,13vw,3.5rem); line-height:1.08; text-transform:uppercase; }
+.ini-rol{ margin:1rem 0 2rem; font-family:var(--serif); font-size:1.25rem; line-height:1.5; text-transform:uppercase; }
+.ini-fig{ position:relative; margin:0; max-width:26rem; }
+.ini-fig img{ width:100%; aspect-ratio:517/704; object-fit:cover; background:#d9d4cd; }
+.ini-fig figcaption{ position:absolute; left:1rem; right:1rem; bottom:1.5rem; text-align:center; color:var(--blanco); font-family:var(--cond); font-weight:500; font-size:1.375rem; line-height:1.2; text-transform:uppercase; }
+
+/* 03 Sobre mí */
+.sobre{ background:var(--noir); padding:6rem 1.25rem 3.5rem; }
+.sobre-visual{ position:relative; max-width:22rem; margin:0 auto 2.5rem; aspect-ratio:569/853; }
+.marco-rojo{ position:absolute; inset:8.1% -1.6% -.5% .35%; border:5px solid var(--rojo); box-shadow:0 0 calc(30px * var(--p)) rgba(214,40,40,calc(.6 * var(--p))); }
+.sobre-visual img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+.sobre h2{ font-family:var(--serif); font-size:2.25rem; line-height:1.1; margin-bottom:1.25rem; }
+.sobre-texto .intro{ color:#E6E6E6; font-size:15px; font-weight:300; line-height:1.75; margin-bottom:1rem; max-width:34rem; }
+.acordeon{ margin-top:1.75rem; border-top:1px solid rgba(255,255,255,.16); max-width:34rem; }
+.t-acc{ border-bottom:1px solid rgba(255,255,255,.16); }
+.t-acc-head{ display:flex; justify-content:space-between; align-items:center; gap:1rem; width:100%; min-height:52px; padding:0; background:none; border:0; color:var(--blanco); font:400 15px/1.3 var(--sans); text-align:left; cursor:pointer; transition:padding-left .25s ease-out,color .25s ease-out; }
+.t-acc-head:hover{ padding-left:.4rem; color:var(--amarillo); }
+.ind{ position:relative; flex:none; width:20px; height:20px; }
+.ind .mas{ position:absolute; inset:0; display:grid; place-items:center; font-style:normal; font-size:18px; color:var(--gris); transition:opacity .25s ease-out; }
+.ind .barra{ position:absolute; left:50%; top:50%; width:5px; height:14px; transform:translate(-50%,-50%); border:1px solid var(--amarillo); opacity:0; transition:opacity .25s ease-out; }
+.t-acc[data-open="true"] .ind .mas{ opacity:0; }
+.t-acc[data-open="true"] .ind .barra{ opacity:1; }
+.t-acc-panel-inner p,.t-acc-panel-inner ul{ padding:0 0 1.25rem; max-width:28rem; color:var(--gris); font-size:13.5px; font-weight:300; line-height:1.7; }
+
+/* 04 Proyectos */
+.proyectos{ background:var(--noir); }
+.prj-top{ display:none; }
+.caso{ position:relative; display:block; min-height:14rem; padding:2.25rem 1.25rem 2rem; overflow:hidden; text-decoration:none; color:var(--blanco); background:var(--noir); isolation:isolate; }
+.caso-fondo{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.caso-1::after{ content:""; position:absolute; inset:0; z-index:-1; background:url(img/proyecto-arego-gradiente.png) center / 100% 100% no-repeat; }
+.caso-etiqueta{ font-family:var(--mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; margin-bottom:1rem; padding-right:4rem; }
+.caso-1 .caso-etiqueta{ color:var(--amarillo); }
+.caso-2 .caso-etiqueta{ color:var(--noir); }
+.caso h3{ font-family:var(--serif); font-size:clamp(1.9rem,8.5vw,2.5rem); line-height:1.1; max-width:11em; text-shadow:0 1px 14px rgba(0,0,0,.25); }
+.caso-1 h3{ color:#DAD5CD; }
+.caso-3 h3{ color:var(--alabastro); }
+.caso-pie{ margin-top:1rem; font-size:11px; letter-spacing:.18em; text-transform:uppercase; }
+.caso-num{ position:absolute; right:1.25rem; top:2rem; display:flex; flex-direction:column; align-items:center; gap:.75rem; }
+.caso-num span{ display:grid; place-items:center; width:44px; height:44px; border:1px solid currentColor; border-radius:50%; font-size:10px; font-weight:700; letter-spacing:.08em; }
+.caso-num i{ display:block; width:1px; height:30px; background:currentColor; }
+.caso-2 .caso-num{ color:var(--noir); }
+.caso:hover .caso-num span,.caso:focus-visible .caso-num span{ background:var(--blanco); color:var(--noir); }
+.caso-num span{ transition:background-color .25s ease-out,color .25s ease-out; }
+
+/* 05 Contacto */
+.contacto{ background:var(--contacto); color:var(--blanco); font-family:var(--inter); padding:5.5rem 1.25rem 3rem; overflow:hidden; }
+.ct-top{ display:none; }
+.ct-titulo{ margin:0 0 3rem; font-family:var(--inter); font-weight:800; font-size:clamp(3.5rem,23vw,6.5rem); line-height:.82; letter-spacing:-.04em; text-transform:uppercase; }
+.ct-titulo span{ display:block; }
+.ct-cols{ display:grid; gap:2.5rem; }
+.ct-etq{ font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; margin-bottom:1.25rem; }
+.ct-dir p{ font-size:13px; line-height:1.7; color:var(--gris); }
+.ct-dir p:first-of-type{ color:#E6E6E6; }
+.ct-dir a{ text-decoration:none; }
+.ct-dir a:hover{ text-decoration:underline; }
+.ct-form{ display:grid; gap:5px; }
+.ct-form input{ width:100%; height:44px; padding:0 12px; background:var(--blanco); border:0; border-radius:0; font:400 14px var(--inter); color:var(--noir); }
+.ct-form input::placeholder{ color:#5C5C5C; opacity:1; }
+.ct-boton{ justify-self:start; margin-top:1.5rem; min-height:44px; padding:0 1.6rem; border:0; border-radius:999px; background:var(--blanco); color:var(--noir); font:500 12px var(--inter); cursor:pointer; transition:background-color .2s ease-out; }
+.ct-boton:hover{ background:var(--amarillo); }
+
+/* =====================================================
+   ESCRITORIO (diseño de 1440 px)
+   ===================================================== */
+@media (min-width:1024px){
+  .barra-movil{ display:none; }
+  .hero-top,.logo-seccion,.hero-pie,.ini-lateral,.ini-ciudad,.prj-top,.ct-top{ display:block; }
+  .nav-h ul{ display:flex; gap:calc(var(--u)*38); }
+
+  /* 01 Home */
+  .hero{ height:calc(var(--u)*1064); min-height:0; display:block; }
+  .hero::after{ display:none; }
+  .hero-top{ position:absolute; left:0; right:0; top:calc(var(--u)*53 - 22px); height:44px; z-index:3; }
+  .hero-marca{ position:absolute; left:calc(var(--u)*50); top:0; height:44px; display:flex; align-items:center; letter-spacing:.3em; }
+  .hero-top .nav-h{ position:absolute; left:calc(var(--u)*793); top:1px; }
+  .hero .logo-seccion{ position:absolute; z-index:3; left:calc(var(--u)*56); top:calc(var(--u)*83); width:calc(var(--u)*150); }
+  .hero-foto{ inset:auto; left:calc(var(--u)*51); top:calc(var(--u)*241); width:calc(var(--u)*1278); height:calc(var(--u)*724); object-position:center; }
+  .titulo-home{ position:absolute; left:calc(var(--u)*110); top:calc(var(--u)*430); padding:0; font-size:calc(var(--u)*100); line-height:calc(var(--u)*100); letter-spacing:-.01em; }
+  .hero-pie{ position:absolute; left:calc(var(--u)*50); top:calc(var(--u)*997 - .75em); color:#C9C9CE; }
+
+  /* 02 Inicio */
+  .inicio{ height:calc(var(--u)*1019); padding:0; }
+  .ini-lateral{ position:absolute; left:0; top:0; bottom:0; width:calc(var(--u)*219); border-right:1px solid rgba(16,16,16,.2); }
+  .ini-lateral .logo-seccion{ position:absolute; left:calc(var(--u)*33); top:calc(var(--u)*41); width:calc(var(--u)*154); }
+  .ini-lateral .nav-h{ position:absolute; left:calc(var(--u)*31); top:calc(var(--u)*585 - 22px); }
+  .ini-lateral .nav-h ul{ display:block; }
+  .ini-lateral .nav-h a{ min-height:max(44px,calc(var(--u)*45)); }
+  .ini-oficio{ position:absolute; left:calc(var(--u)*282); top:calc(var(--u)*37); margin:0; font-size:max(10px,calc(var(--u)*10)); line-height:calc(var(--u)*18); }
+  .ini-ciudad{ position:absolute; right:calc(var(--u)*92); top:calc(var(--u)*47 - .7em); display:flex; align-items:center; gap:calc(var(--u)*15); white-space:nowrap; }
+  .ini-ciudad i{ width:calc(var(--u)*8); height:calc(var(--u)*8); border-radius:50%; background:var(--noir); }
+  .ini-texto{ position:absolute; left:calc(var(--u)*282); top:calc(var(--u)*330); }
+  .ini-nombre{ font-size:calc(var(--u)*92); line-height:calc(var(--u)*94); letter-spacing:-.02em; }
+  .ini-rol{ margin:calc(var(--u)*8) 0 0; font-size:calc(var(--u)*31); line-height:calc(var(--u)*49); }
+  .ini-fig{ position:absolute; left:calc(var(--u)*802); top:calc(var(--u)*136); width:calc(var(--u)*517); max-width:none; }
+  .ini-fig figcaption{ left:calc(var(--u)*40); right:calc(var(--u)*40); bottom:calc(var(--u)*35); font-size:calc(var(--u)*34); line-height:calc(var(--u)*40.5); }
+
+  /* 03 Sobre mí */
+  .sobre{ height:calc(var(--u)*1023); padding:0; }
+  .sobre .logo-seccion{ position:absolute; left:calc(var(--u)*55); top:calc(var(--u)*47); width:calc(var(--u)*150); }
+  .sobre-marca{ position:absolute; left:calc(var(--u)*312); top:calc(var(--u)*122 - 22px); height:44px; display:flex; align-items:center; letter-spacing:.3em; }
+  .sobre-top .nav-h{ position:absolute; left:calc(var(--u)*579); top:calc(var(--u)*122 - 22px); }
+  .sobre-texto{ position:absolute; left:calc(var(--u)*203); top:calc(var(--u)*186); width:calc(var(--u)*519); }
+  .sobre h2{ font-size:max(34px,calc(var(--u)*50)); line-height:1.06; margin-bottom:calc(var(--u)*23); }
+  .sobre-texto .intro{ font-size:max(14px,calc(var(--u)*15.5)); line-height:1.7; margin-bottom:calc(var(--u)*16); max-width:none; }
+  .acordeon{ margin-top:calc(var(--u)*39); max-width:none; }
+  .t-acc-head{ min-height:max(48px,calc(var(--u)*56)); font-size:max(14px,calc(var(--u)*15.5)); }
+  .t-acc-panel-inner p,.t-acc-panel-inner ul{ font-size:max(13px,calc(var(--u)*13.5)); max-width:calc(var(--u)*445); }
+  .sobre-visual{ position:absolute; left:calc(var(--u)*837); top:calc(var(--u)*91); width:calc(var(--u)*569); height:calc(var(--u)*853); max-width:none; margin:0; aspect-ratio:auto; }
+  .marco-rojo{ inset:calc(var(--u)*69) calc(var(--u)*-9) calc(var(--u)*-4) calc(var(--u)*2); border-width:max(5px,calc(var(--u)*7)); }
+
+  /* 04 Proyectos */
+  .prj-top{ position:absolute; z-index:3; left:0; right:0; top:0; height:calc(var(--u)*175); pointer-events:none; }
+  .prj-top > *{ pointer-events:auto; }
+  .prj-top .logo-seccion{ position:absolute; left:calc(var(--u)*50); top:calc(var(--u)*7); width:calc(var(--u)*161); background:var(--alabastro); border-radius:50%; }
+  .prj-top .nav-h{ position:absolute; left:calc(var(--u)*443); top:calc(var(--u)*44 - 22px); }
+  .prj-top .nav-h ul{ gap:calc(var(--u)*45); }
+  .prj-der{ position:absolute; right:calc(var(--u)*78); top:calc(var(--u)*28); text-align:right; line-height:calc(var(--u)*32); font-size:max(10px,calc(var(--u)*10)); }
+  .prj-der span{ display:block; }
+  .caso{ padding:0; min-height:0; }
+  .caso-1{ height:calc(var(--u)*408); }
+  .caso-2{ height:calc(var(--u)*307); }
+  .caso-3{ height:calc(var(--u)*308); }
+  .caso-etiqueta{ position:absolute; margin:0; padding:0; font-size:max(9px,calc(var(--u)*10)); }
+  .caso-1 .caso-etiqueta{ top:calc(var(--u)*211 - .7em); left:calc(var(--u)*73); }
+  .caso-2 .caso-etiqueta{ top:calc(var(--u)*45 - .7em); left:calc(var(--u)*70); }
+  .caso-3 .caso-etiqueta{ top:calc(var(--u)*43 - .7em); left:calc(var(--u)*70); }
+  .caso h3{ position:absolute; font-size:calc(var(--u)*58); line-height:calc(var(--u)*62); max-width:calc(var(--u)*640); }
+  .caso-1 h3{ top:calc(var(--u)*238); left:calc(var(--u)*73); }
+  .caso-2 h3{ top:calc(var(--u)*70); left:calc(var(--u)*70); }
+  .caso-3 h3{ top:calc(var(--u)*69); left:calc(var(--u)*70); }
+  .caso-pie{ position:absolute; left:calc(var(--u)*80); top:calc(var(--u)*379 - .7em); margin:0; }
+  .caso-num{ right:calc(var(--u)*83); gap:calc(var(--u)*13); }
+  .caso-1 .caso-num{ top:calc(var(--u)*232); }
+  .caso-2 .caso-num{ top:calc(var(--u)*90); }
+  .caso-3 .caso-num{ top:calc(var(--u)*90); }
+  .caso-num span{ width:calc(var(--u)*44); height:calc(var(--u)*44); }
+  .caso-num i{ height:calc(var(--u)*30); }
+
+  /* 05 Contacto */
+  .contacto{ height:calc(var(--u)*1024); padding:0; }
+  .ct-top{ position:absolute; left:0; right:0; top:0; height:calc(var(--u)*210); }
+  .ct-top .logo-seccion{ position:absolute; left:calc(var(--u)*62); top:calc(var(--u)*52); width:calc(var(--u)*150); }
+  .ct-marca{ position:absolute; left:calc(var(--u)*389); top:calc(var(--u)*128 - 22px); height:44px; display:flex; align-items:center; font-family:var(--inter); font-size:max(10px,calc(var(--u)*11)); font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
+  .ct-top .nav-h{ position:absolute; left:calc(var(--u)*903); top:calc(var(--u)*131 - 22px); }
+  .ct-top .nav-h ul{ gap:calc(var(--u)*55); }
+  .ct-top .nav-h a{ font-family:var(--inter); font-weight:400; letter-spacing:.2em; }
+  .ct-top .nav-h a[aria-current="true"]{ font-weight:600; }
+  .ct-titulo{ position:absolute; left:calc(var(--u)*58); top:calc(var(--u)*307); margin:0; font-size:calc(var(--u)*148); line-height:calc(var(--u)*122); }
+  .ct-cols{ display:block; }
+  .ct-dir{ position:absolute; left:calc(var(--u)*56); top:calc(var(--u)*666); }
+  .ct-form-col{ position:absolute; left:calc(var(--u)*560); top:calc(var(--u)*666); width:calc(var(--u)*824); }
+  .ct-etq{ margin-bottom:calc(var(--u)*26); line-height:calc(var(--u)*14); }
+  .ct-dir .ct-etq{ margin-bottom:calc(var(--u)*35); }
+  .ct-dir p{ font-size:max(12px,calc(var(--u)*12)); line-height:calc(var(--u)*23); }
+  .ct-form{ gap:calc(var(--u)*5); }
+  .ct-form input{ height:max(38px,calc(var(--u)*39)); }
+  .ct-boton{ margin-top:calc(var(--u)*37); width:calc(var(--u)*144); min-height:max(36px,calc(var(--u)*36)); padding:0; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  .t-acc-head,.ind .mas,.ind .barra,.ct-boton,.caso-num span{ transition-duration:.01ms !important; }
+}
+
+/* =====================================================
+   PÁGINAS DE PROYECTO (se abren dentro del mismo index)
+   ===================================================== */
+.cv{ --cv-fondo:#fff; --cv-tinta:#101010; --cv-linea:#D9D9D9; --cv-serif:"Cormorant Garamond",Georgia,"Times New Roman",serif; position:fixed; inset:0; z-index:200; overflow:auto; background:var(--cv-fondo); color:var(--cv-tinta); font-family:var(--cv-serif); font-size:20px; line-height:1.1; }
+.cv[hidden]{ display:none; }
+.cv-oscuro{ --cv-fondo:#000; --cv-tinta:#fff; --cv-linea:#333; }
+.cv:focus{ outline:none; }
+.cv-pagina{ position:relative; padding:1rem 1.25rem 3rem; }
+.cv-volver{ display:inline-flex; align-items:center; min-height:44px; font:600 11px var(--sans); letter-spacing:.14em; text-transform:uppercase; text-decoration:none; }
+.cv-etq{ font-family:var(--sans); font-size:10px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; line-height:1.6; }
+.cv-num-link{ display:inline-flex; align-items:baseline; gap:.9rem; min-height:44px; text-decoration:none; }
+.cv-num{ font-family:var(--cv-serif); font-weight:300; font-size:4.5rem; line-height:1; font-variant-numeric:oldstyle-nums; font-feature-settings:"onum" 1; }
+.cv-num-link:hover .cv-etq{ text-decoration:underline; text-underline-offset:5px; }
+.cv h1{ font-family:var(--cv-serif); font-weight:300; font-size:clamp(2.75rem,13vw,4.5rem); line-height:1; margin:1.5rem 0 1.25rem; }
+.cv-texto{ font-size:1.375rem; line-height:1.15; max-width:42rem; letter-spacing:-.005em; }
+.cv-fecha{ margin-top:1.5rem; }
+.cv-portada{ width:100%; max-width:26rem; margin:2rem 0; }
+.cv-galeria{ display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:2rem; }
+.cv-galeria img{ width:100%; height:auto; }
+.cv-lista{ margin-top:2.5rem; font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:.3em; text-transform:uppercase; line-height:1.8; }
+.cv-linea{ display:none; }
+@media (min-width:1024px){
+  .cv-pagina{ height:calc(var(--u)*1024); padding:0; overflow:hidden; }
+  .cv-volver{ display:none; }
+  .cv-linea{ display:block; position:absolute; left:calc(var(--u)*479); top:0; bottom:0; width:1px; background:var(--cv-linea); }
+  .cv-cab-caso{ position:absolute; left:calc(var(--u)*58); top:calc(var(--u)*58); }
+  .cv-num{ font-size:calc(var(--u)*110); }
+  .cv-num-link{ gap:calc(var(--u)*10); }
+  .cv-portada{ position:absolute; left:calc(var(--u)*56); top:calc(var(--u)*192); width:calc(var(--u)*367); height:calc(var(--u)*554); max-width:none; margin:0; object-fit:cover; }
+  .cv h1{ position:absolute; margin:0; font-size:calc(var(--u)*84); line-height:calc(var(--u)*84); }
+  .cv-texto{ position:absolute; max-width:none; font-size:calc(var(--u)*26); line-height:calc(var(--u)*28); }
+  .cv-fecha{ position:absolute; margin:0; }
+  .cv-galeria{ position:absolute; margin:0; display:block; }
+  .cv-galeria img{ position:absolute; height:auto; object-fit:cover; }
+  .cv-lista{ position:absolute; margin:0; }
+}
+
+@media (min-width:1024px){
+  .p-arego .cv-linea{ z-index:0; }
+  .p-arego h1{ left:calc(var(--u)*484); top:calc(var(--u)*112); }
+  .p-arego .cv-texto{ left:calc(var(--u)*481); top:calc(var(--u)*196); width:calc(var(--u)*880); }
+  .p-arego .cv-fecha{ left:calc(var(--u)*481); top:calc(var(--u)*423); }
+  .p-arego .cv-galeria{ left:calc(var(--u)*441); top:calc(var(--u)*465); width:calc(var(--u)*996); height:calc(var(--u)*449); }
+  .p-arego .cv-galeria img{ width:calc(var(--u)*325); height:calc(var(--u)*217); }
+  .p-arego .cv-galeria img:nth-child(1){ left:0; top:0; }
+  .p-arego .cv-galeria img:nth-child(2){ left:calc(var(--u)*337); top:0; }
+  .p-arego .cv-galeria img:nth-child(3){ left:calc(var(--u)*674); top:0; width:calc(var(--u)*322); }
+  .p-arego .cv-galeria img:nth-child(4){ left:0; top:calc(var(--u)*232); }
+  .p-arego .cv-galeria img:nth-child(5){ left:calc(var(--u)*337); top:calc(var(--u)*232); }
+  .p-arego .cv-galeria img:nth-child(6){ left:calc(var(--u)*674); top:calc(var(--u)*232); width:calc(var(--u)*322); }
+  .p-arego .cv-lista{ left:calc(var(--u)*56); top:calc(var(--u)*896); }
+  .p-arego .cv-galeria,.p-arego .cv-portada,.p-arego h1,.p-arego .cv-texto,.p-arego .cv-fecha{ z-index:1; }
+}
+.p-alicia .cv-lista{ color:#fff; }
+@media (min-width:1024px){
+  .p-alicia h1{ left:calc(var(--u)*83); top:calc(var(--u)*78); width:calc(var(--u)*780); font-size:calc(var(--u)*86); line-height:calc(var(--u)*85); }
+  .p-alicia .cv-cab-caso{ left:calc(var(--u)*1042); top:calc(var(--u)*58); }
+  .p-alicia .cv-num{ font-size:calc(var(--u)*84); }
+  .p-alicia .cv-num-link .cv-etq{ white-space:nowrap; line-height:1.5; font-size:9px; letter-spacing:.24em; }
+  .p-alicia .cv-texto{ left:calc(var(--u)*83); top:calc(var(--u)*257); width:calc(var(--u)*546); font-size:calc(var(--u)*24.5); line-height:calc(var(--u)*27); }
+  .p-alicia .cv-galeria{ left:0; top:0; width:calc(var(--u)*1440); height:calc(var(--u)*1024); pointer-events:none; }
+  .p-alicia .cv-galeria img{ pointer-events:auto; }
+  .p-alicia .cv-galeria img:nth-child(1){ left:calc(var(--u)*656); top:calc(var(--u)*192); width:calc(var(--u)*368); height:calc(var(--u)*245); }
+  .p-alicia .cv-galeria img:nth-child(2){ left:calc(var(--u)*1041); top:calc(var(--u)*192); width:calc(var(--u)*367); height:calc(var(--u)*245); }
+  .p-alicia .cv-galeria img:nth-child(3){ left:calc(var(--u)*84); top:calc(var(--u)*449); width:calc(var(--u)*457); height:calc(var(--u)*305); }
+  .p-alicia .cv-galeria img:nth-child(4){ left:calc(var(--u)*555); top:calc(var(--u)*449); width:calc(var(--u)*381); height:calc(var(--u)*305); }
+  .p-alicia .cv-galeria img:nth-child(5){ left:calc(var(--u)*951); top:calc(var(--u)*449); width:calc(var(--u)*457); height:calc(var(--u)*305); }
+  .p-alicia .cv-galeria img:nth-child(6){ left:calc(var(--u)*84); top:calc(var(--u)*766); width:calc(var(--u)*335); height:calc(var(--u)*223); }
+  .p-alicia .cv-galeria img:nth-child(7){ left:calc(var(--u)*428); top:calc(var(--u)*766); width:calc(var(--u)*334); height:calc(var(--u)*223); }
+  .p-alicia .cv-galeria img:nth-child(8){ left:calc(var(--u)*773); top:calc(var(--u)*766); width:calc(var(--u)*163); height:calc(var(--u)*109); }
+  .p-alicia .cv-fecha{ left:calc(var(--u)*772); top:calc(var(--u)*886); }
+  .p-alicia .cv-lista{ left:calc(var(--u)*1033); top:calc(var(--u)*896); }
+}
+@media (min-width:1024px){
+  .p-conc h1{ left:calc(var(--u)*502); top:calc(var(--u)*190); }
+  .p-conc .cv-texto{ left:calc(var(--u)*502); top:calc(var(--u)*280); width:calc(var(--u)*540); font-size:calc(var(--u)*24); line-height:calc(var(--u)*24); }
+  .p-conc .cv-fecha{ left:calc(var(--u)*502); top:calc(var(--u)*435); }
+  .p-conc .cv-portada{ height:calc(var(--u)*491); }
+  .p-conc .cv-galeria{ left:0; top:0; width:calc(var(--u)*1440); height:calc(var(--u)*1024); pointer-events:none; }
+  .p-conc .cv-galeria img{ pointer-events:auto; }
+  .p-conc .cv-galeria img:nth-child(1){ left:calc(var(--u)*482); top:calc(var(--u)*464); width:calc(var(--u)*179); height:calc(var(--u)*272); }
+  .p-conc .cv-galeria img:nth-child(2){ left:calc(var(--u)*673); top:calc(var(--u)*464); width:calc(var(--u)*252); height:calc(var(--u)*142); }
+  .p-conc .cv-galeria img:nth-child(3){ left:calc(var(--u)*673); top:calc(var(--u)*611); width:calc(var(--u)*252); height:calc(var(--u)*142); }
+  .p-conc .cv-galeria img:nth-child(4){ left:calc(var(--u)*673); top:calc(var(--u)*758); width:calc(var(--u)*252); height:calc(var(--u)*142); }
+  .p-conc .cv-galeria img:nth-child(5){ left:calc(var(--u)*937); top:calc(var(--u)*464); width:calc(var(--u)*287); height:calc(var(--u)*436); }
+  .p-conc .cv-galeria img:nth-child(6){ left:calc(var(--u)*1236); top:calc(var(--u)*464); width:calc(var(--u)*143); height:calc(var(--u)*214); }
+  .p-conc .cv-galeria img:nth-child(7){ left:calc(var(--u)*1236); top:calc(var(--u)*682); width:calc(var(--u)*143); height:calc(var(--u)*214); }
+  .p-conc .cv-galeria img:nth-child(8){ left:calc(var(--u)*383); top:calc(var(--u)*743); width:calc(var(--u)*278); height:calc(var(--u)*157); }
+  .p-conc .cv-lista{ left:calc(var(--u)*56); top:calc(var(--u)*902); }
+}
+</style>
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- Barra solo para celular -->
+<header class="barra-movil">
+  <a href="#home" aria-label="Carolina Zapata, ir al inicio de la página"><img src="img/logo.png" width="44" height="44" alt="Logo de Carolina Zapata: diafragma fotográfico amarillo"></a>
+  <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+  <nav class="menu t-dropdown" id="menu" data-origin="top-right" aria-label="Menú principal">
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenido">
+
+  <!-- 01 · HOME -->
+  <section class="hero seccion" id="home" aria-label="Home">
+    <img class="hero-foto" src="img/hero.jpg" width="1281" height="727" fetchpriority="high" alt="Retrato en blanco y negro de Carolina Zapata junto a un árbol de tronco enorme">
+    <h1 class="titulo-home t-stagger">
+      <span class="t-stagger-line t-stagger-line--1">Historias</span>
+      <span class="t-stagger-line t-stagger-line--2">reales de</span>
+      <span class="t-stagger-line t-stagger-line--3">vida.</span>
+    </h1>
+    <div class="hero-top">
+      <span class="hero-marca mini">Carolina Zapata</span>
+      <nav class="nav-h" aria-label="Menú del Home">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+    <a class="logo-seccion" href="#home" aria-label="Ir al inicio de la página"><img src="img/logo.png" width="400" height="400" alt="Logo de Carolina Zapata: diafragma fotográfico amarillo"></a>
+    <p class="hero-pie mini">Bogotá, Colombia</p>
+  </section>
+
+  <!-- 02 · INICIO -->
+  <section class="inicio seccion" id="inicio" aria-label="Inicio">
+    <div class="ini-lateral">
+      <a class="logo-seccion" href="#home" aria-label="Ir al inicio de la página"><img src="img/logo-claro.png" width="400" height="400" alt="" loading="lazy"></a>
+      <nav class="nav-h" aria-label="Menú del Inicio">
+        <ul>
+          <li><a href="#inicio" aria-current="true">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="ini-oficio mini"><strong>Fotógrafo</strong><span>Artista visual</span></p>
+    <p class="ini-ciudad mini">Bogotá, Colombia <i aria-hidden="true"></i></p>
+    <div class="ini-texto">
+      <h2 class="ini-nombre">Carolina<br>Zapata</h2>
+      <p class="ini-rol">Diseñadora gráfica<br>en formación</p>
+    </div>
+    <figure class="ini-fig">
+      <img src="img/retrato-inicio.jpg" width="532" height="724" loading="lazy" alt="Retrato en blanco y negro de Carolina Zapata sonriendo, con el cabello corto">
+      <figcaption>"Cuento historias donde la luz, el espacio y la composición cobran vida."</figcaption>
+    </figure>
+  </section>
+
+  <!-- 03 · SOBRE MÍ -->
+  <section class="sobre seccion" id="sobre-mi" aria-label="Sobre mí">
+    <div class="sobre-top">
+      <a class="logo-seccion" href="#home" aria-label="Ir al inicio de la página"><img src="img/logo.png" width="400" height="400" alt="" loading="lazy"></a>
+      <span class="sobre-marca mini">Carolina Zapata</span>
+      <nav class="nav-h" aria-label="Menú de Sobre mí">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi" aria-current="true">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <figure class="sobre-visual" id="marco">
+      <div class="marco-rojo" aria-hidden="true"></div>
+      <img src="img/retrato-sobre-mi.png" width="569" height="853" loading="lazy" alt="Carolina Zapata sosteniendo dos cámaras analógicas frente a su rostro, con chaqueta de cuero y otra cámara colgada al cuello">
+    </figure>
+
+    <div class="sobre-texto">
+      <h2>Hola! Soy<br>Carolina Zapata</h2>
+      <p class="intro">Una diseñadora gráfica en formación y apasionada del diseño, explorando el mundo a través de la lente con la visión de consolidarme como artista visual.</p>
+      <p class="intro">Con cada encuadre busco fusionar la estética del diseño con la sensibilidad de la fotografía, transformando momentos cotidianos en piezas de expresión visual pura.</p>
+
+      <div class="acordeon">
+        <div class="t-acc" data-open="true">
+          <button class="t-acc-head" type="button" aria-expanded="true" aria-controls="acc-1" id="acc-t1">
+            <span>Mi trayectoria</span>
+            <span class="ind" aria-hidden="true"><i class="mas">+</i><i class="barra"></i></span>
+          </button>
+          <div class="t-acc-panel" id="acc-1" role="region" aria-labelledby="acc-t1"><div class="t-acc-panel-inner"><p>Mi camino creativo comenzó entre trazos y retículas como diseñadora gráfica, encontrando en la fotografía el refugio perfecto para capturar la esencia de la vida y experimentar con la narrativa visual.</p></div></div>
+        </div>
+        <div class="t-acc" data-open="false">
+          <button class="t-acc-head" type="button" aria-expanded="false" aria-controls="acc-2" id="acc-t2">
+            <span>Mi Filosofía</span>
+            <span class="ind" aria-hidden="true"><i class="mas">+</i><i class="barra"></i></span>
+          </button>
+          <div class="t-acc-panel" id="acc-2" role="region" aria-labelledby="acc-t2"><div class="t-acc-panel-inner"><p>Crear imágenes que trasciendan lo ordinario, utilizando la luz y la composición no solo como herramientas técnicas, sino como el lenguaje de mi evolución hacia el arte visual.</p></div></div>
+        </div>
+        <div class="t-acc" data-open="false">
+          <button class="t-acc-head" type="button" aria-expanded="false" aria-controls="acc-3" id="acc-t3">
+            <span>Reconocimientos y Experiencias</span>
+            <span class="ind" aria-hidden="true"><i class="mas">+</i><i class="barra"></i></span>
+          </button>
+          <div class="t-acc-panel" id="acc-3" role="region" aria-labelledby="acc-t3"><div class="t-acc-panel-inner"><ul><li>Exploración constante en composición y teoría del color.</li><li>Proyectos académicos en diseño y experimentación fotográfica.</li><li>Búsqueda continua de una identidad artística propia.</li></ul></div></div>
+        </div>
+        <div class="t-acc" data-open="false">
+          <button class="t-acc-head" type="button" aria-expanded="false" aria-controls="acc-4" id="acc-t4">
+            <span>Más allá de la Lente</span>
+            <span class="ind" aria-hidden="true"><i class="mas">+</i><i class="barra"></i></span>
+          </button>
+          <div class="t-acc-panel" id="acc-4" role="region" aria-labelledby="acc-t4"><div class="t-acc-panel-inner"><p>Cuando no estoy diseñando o cámara en mano, sigo investigando nuevas formas de expresión visual, texturas y conceptos que alimenten mi camino hacia el arte contemporáneo.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · PROYECTOS -->
+  <section class="proyectos seccion" id="proyectos" aria-label="Proyectos">
+    <h2 class="solo-lector">Proyectos</h2>
+    <div class="prj-top">
+      <a class="logo-seccion" href="#home" aria-label="Ir al inicio de la página"><img src="img/logo-claro.png" width="400" height="400" alt="" loading="lazy"></a>
+      <nav class="nav-h" aria-label="Menú de Proyectos">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos" aria-current="true">Proyectos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+      <p class="prj-der mini"><span>Fotografía</span><span>Historias visuales</span></p>
+    </div>
+
+    <a class="caso caso-1" href="#proyecto-arego" aria-label="Ver caso 01: AREGO, campaña de producto">
+      <img class="caso-fondo" src="img/proyecto-arego.jpg" width="1440" height="408" loading="lazy" alt="Bodegón comercial cálido de una cerveza artesanal junto a una jarra con borde de sal y cítricos">
+      <p class="caso-etiqueta">Dirección de fotografía comercial —</p>
+      <h3>AREGO: Campaña de producto.</h3>
+      <p class="caso-pie">Portafolio 2026</p>
+      <span class="caso-num" aria-hidden="true"><span>01</span><i></i></span>
+    </a>
+
+    <a class="caso caso-2" href="#proyecto-alicia" aria-label="Ver caso 02: Alicia en el país de las Locuras">
+      <img class="caso-fondo" src="img/proyecto-alicia.jpg" width="1440" height="307" loading="lazy" alt="Retrato fantástico sobre fondo azul con dos figuras de sombrero, del concepto Alicia en el país de las Locuras">
+      <p class="caso-etiqueta">Dirección de fotografía</p>
+      <h3>Alicia en el país de las Locuras: Concepto.</h3>
+      <span class="caso-num" aria-hidden="true"><span>02</span><i></i></span>
+    </a>
+
+    <a class="caso caso-3" href="#proyecto-concepto" aria-label="Ver caso 03: Campaña por la salud mental">
+      <img class="caso-fondo" src="img/proyecto-salud-mental.jpg" width="1440" height="308" loading="lazy" alt="Retrato expresivo en claroscuro de un rostro de perfil, de la campaña por la salud mental">
+      <p class="caso-etiqueta">Dirección de fotografía</p>
+      <h3>Campaña por la salud mental.</h3>
+      <span class="caso-num" aria-hidden="true"><span>03</span><i></i></span>
+    </a>
+  </section>
+
+  <!-- 05 · CONTACTO -->
+  <section class="contacto seccion" id="contacto" aria-label="Contacto">
+    <div class="ct-top">
+      <a class="logo-seccion" href="#home" aria-label="Ir al inicio de la página"><img src="img/logo.png" width="400" height="400" alt="" loading="lazy"></a>
+      <span class="ct-marca">Carolina Zapata</span>
+      <nav class="nav-h" aria-label="Menú de Contacto">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#contacto" aria-current="true">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <h2 class="ct-titulo" aria-label="Contacto"><span aria-hidden="true">Cont</span><span aria-hidden="true">—tacto</span></h2>
+
+    <div class="ct-cols">
+      <div class="ct-dir">
+        <h3 class="ct-etq">Visítanos</h3>
+        <p>Cundinamarca Madrid - Colombia</p>
+        <p>Calle 37 N° 51-87</p>
+        <p>Celular <a href="tel:+573132630782">3132630782</a></p>
+      </div>
+      <div class="ct-form-col">
+        <h3 class="ct-etq">Hablemos</h3>
+        <form class="ct-form" action="mailto:phooto.grammer@gmail.com" method="post" enctype="text/plain">
+          <label class="solo-lector" for="f-nombre">Nombre</label>
+          <input id="f-nombre" name="Nombre" type="text" placeholder="Nombre" autocomplete="name" required>
+          <label class="solo-lector" for="f-email">Email</label>
+          <input id="f-email" name="Email" type="email" placeholder="Email" autocomplete="email" required>
+          <label class="solo-lector" for="f-empresa">Empresa</label>
+          <input id="f-empresa" name="Empresa" type="text" placeholder="Empresa" autocomplete="organization">
+          <label class="solo-lector" for="f-proyecto">Háblanos de tu proyecto</label>
+          <input id="f-proyecto" name="Proyecto" type="text" placeholder="Háblanos de tu proyecto">
+          <button class="ct-boton" type="submit">Enviar mensaje</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- PÁGINAS DE PROYECTO -->
+  <div class="cv" id="proyecto-arego" tabindex="-1" role="dialog" aria-modal="true" aria-label="Proyecto 01: Cerveza Arego" hidden>
+    <div class="cv-pagina p-arego">
+  <a class="cv-volver" href="#proyectos">← Proyectos</a>
+  <span class="cv-linea" aria-hidden="true"></span>
+  <header class="cv-cab-caso">
+    <a class="cv-num-link" href="#proyectos" aria-label="Volver a Proyectos"><span class="cv-num" aria-hidden="true">01</span><span class="cv-etq" aria-hidden="true">Arego</span></a>
+  </header>
+  <img class="cv-portada" src="img/arego-portada.jpg" width="365" height="552" alt="Botella de cerveza Arego inclinada sobre una jarra con borde de sal, sobre fondo naranja">
+  <h1>Cerveza Arego</h1>
+  <p class="cv-texto">Concepto comercial busca combinar lo tropical con el estilo vintage, usando colores cálidos como el naranja, el amarillo y los tonos tierra. Queremos transmitir frescura y una sensación de nostalgia, resaltando los ingredientes de la cerveza mediante planos detalle, cámara lenta e iluminación cálida. La idea es mostrar a Arego como una cerveza refrescante, ideal para disfrutar de formas diferentes.</p>
+  <p class="cv-fecha cv-etq">2026</p>
+  <div class="cv-galeria">
+    <img src="img/arego-1.jpg" width="323" height="215" loading="lazy" alt="Mangos y frutas tropicales sobre una tabla de madera, con hojas de monstera al fondo">
+    <img src="img/arego-2.jpg" width="323" height="215" loading="lazy" alt="Jarra de cerveza con borde de sal y una rodaja de limón">
+    <img src="img/arego-3.jpg" width="320" height="215" loading="lazy" alt="Botella de Arego inclinándose sobre una jarra con limón">
+    <img src="img/arego-4.jpg" width="323" height="215" loading="lazy" alt="Detalle de granos dorados cayendo sobre una superficie metálica">
+    <img src="img/arego-5.jpg" width="323" height="215" loading="lazy" alt="Cuello de una botella de cerveza Arego con etiqueta dorada">
+    <img src="img/arego-6.jpg" width="320" height="215" loading="lazy" alt="Bodegón con mangos, hielo, una botella y una jarra de cerveza">
+  </div>
+  <p class="cv-lista">People<br>Places<br>Emotions</p>
+</div>
+  </div>
+  <div class="cv cv-oscuro" id="proyecto-alicia" tabindex="-1" role="dialog" aria-modal="true" aria-label="Proyecto 02: Alicia en el país de las Locuras" hidden>
+    <div class="cv-pagina p-alicia">
+  <a class="cv-volver" href="#proyectos">← Proyectos</a>
+  <header class="cv-cab-caso">
+    <a class="cv-num-link" href="#proyectos" aria-label="Volver a Proyectos"><span class="cv-num" aria-hidden="true">02</span><span class="cv-etq" aria-hidden="true">Alicia en el país<br>de las Locuras</span></a>
+  </header>
+  <h1>Alicia en el país de las Locuras</h1>
+  <p class="cv-texto">La reinterpretación el cuento como un viaje por la mente de Alicia, el País de las Maravillas no es un lugar, es su refugio. Junto al Sombrerero, Alicia encuentra en la locura una felicidad que la realidad le niega. La serie avanza desde la euforia de la fantasía hasta el despertar en un hospital psiquiátrico, donde los colores se apagan y la ilusión se rompe.</p>
+  <div class="cv-galeria">
+    <img src="img/alicia-1.jpg" width="366" height="243" loading="lazy" alt="Alicia con luz azul y cabello azulado, mirando sus manos">
+    <img src="img/alicia-2.jpg" width="365" height="243" loading="lazy" alt="Alicia entre aros de luz dorada y chispas">
+    <img src="img/alicia-3.jpg" width="455" height="303" loading="lazy" alt="El Sombrerero abraza a Alicia frente a un fondo amarillo">
+    <img src="img/alicia-4.jpg" width="379" height="303" loading="lazy" alt="Alicia y el Sombrerero en una mesa de té llena de flores">
+    <img src="img/alicia-5.jpg" width="455" height="303" loading="lazy" alt="Alicia con la mano en la mejilla entre dos figuras con sombrero">
+    <img src="img/alicia-6.jpg" width="333" height="221" loading="lazy" alt="Alicia sentada frente a otra figura en un cuarto blanco">
+    <img src="img/alicia-7.jpg" width="332" height="221" loading="lazy" alt="Aros de luz dorada alrededor de Alicia">
+    <img src="img/alicia-8.jpg" width="161" height="107" loading="lazy" alt="Primer plano de Alicia con chaqueta clara">
+  </div>
+  <p class="cv-fecha cv-etq">2026</p>
+  <p class="cv-lista">Personas<br>Lugares<br>Emociones</p>
+</div>
+  </div>
+  <div class="cv" id="proyecto-concepto" tabindex="-1" role="dialog" aria-modal="true" aria-label="Proyecto 03: Concepto" hidden>
+    <div class="cv-pagina p-conc">
+  <a class="cv-volver" href="#proyectos">← Proyectos</a>
+  <span class="cv-linea" aria-hidden="true"></span>
+  <header class="cv-cab-caso">
+    <a class="cv-num-link" href="#proyectos" aria-label="Volver a Proyectos"><span class="cv-num" aria-hidden="true">03</span><span class="cv-etq" aria-hidden="true">Concepto</span></a>
+  </header>
+  <img class="cv-portada" src="img/concepto-portada.jpg" width="365" height="489" alt="Retrato en blanco y negro de un joven con luz que cruza su rostro y vetas doradas en el hombro">
+  <h1>Concepto</h1>
+  <p class="cv-texto">La depresión nos encierra en sombras y nos quiebra, pero el trabajo de reparar las grietas con resiliencia es lo que nos transforma en una versión más sabia, fuerte y brillante, lista para volver a volar.</p>
+  <p class="cv-fecha cv-etq">2024 — 2026</p>
+  <div class="cv-galeria">
+    <img src="img/concepto-1.jpg" width="177" height="270" loading="lazy" alt="Mano con hilos dorados sobre fondo negro">
+    <img src="img/concepto-2.jpg" width="250" height="140" loading="lazy" alt="Dos retratos con líneas doradas sobre la piel">
+    <img src="img/concepto-3.jpg" width="250" height="140" loading="lazy" alt="Mano levantada con hilos dorados en la penumbra">
+    <img src="img/concepto-4.jpg" width="250" height="140" loading="lazy" alt="Figura sentada y retrato de perfil en la penumbra">
+    <img src="img/concepto-5.jpg" width="285" height="434" loading="lazy" alt="Retrato de perfil en claroscuro">
+    <img src="img/concepto-6.jpg" width="141" height="212" loading="lazy" alt="Retrato en blanco y negro con luz sobre el hombro">
+    <img src="img/concepto-7.jpg" width="141" height="212" loading="lazy" alt="Mano alzada iluminada sobre fondo negro">
+    <img src="img/concepto-8.jpg" width="276" height="155" loading="lazy" alt="Perfil en claroscuro de un joven">
+  </div>
+  <p class="cv-lista">Personas<br>Lugares<br>Emociones</p>
+</div>
+  </div>
+
+<script>
+(function () {
+  var boton = document.querySelector('.menu-boton');
+  var menu = document.getElementById('menu');
+  var marco = document.getElementById('marco');
+  var sobre = document.getElementById('sobre-mi');
+
+  /* Menú del celular (Menu dropdown) */
+  var closeMs = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--dropdown-close-dur')) || 150;
+  function abrirMenu() {
+    menu.classList.remove('is-closing');
+    menu.classList.add('is-open');
+    boton.setAttribute('aria-expanded', 'true');
+  }
+  function cerrarMenu() {
+    if (!menu.classList.contains('is-open')) return;
+    menu.classList.remove('is-open');
+    menu.classList.add('is-closing');
+    boton.setAttribute('aria-expanded', 'false');
+    setTimeout(function () { menu.classList.remove('is-closing'); }, closeMs);
+  }
+  boton.addEventListener('click', function () {
+    if (menu.classList.contains('is-open')) cerrarMenu(); else abrirMenu();
+  });
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', cerrarMenu); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarMenu(); });
+
+  /* Título del Home (Texts reveal) */
+  var titulo = document.querySelector('.t-stagger');
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { titulo.classList.add('is-shown'); });
+  });
+
+  /* Acordeón de Sobre mí (Accordion expand), se abre uno a la vez */
+  var acordeones = Array.prototype.slice.call(document.querySelectorAll('.t-acc'));
+  function fijar(acc, abrir) {
+    acc.setAttribute('data-open', String(abrir));
+    acc.querySelector('.t-acc-head').setAttribute('aria-expanded', String(abrir));
+    acc.querySelector('.t-acc-panel').inert = !abrir;
+  }
+  acordeones.forEach(function (acc) {
+    fijar(acc, acc.getAttribute('data-open') === 'true');
+    acc.querySelector('.t-acc-head').addEventListener('click', function () {
+      var estabaAbierto = acc.getAttribute('data-open') === 'true';
+      acordeones.forEach(function (o) { fijar(o, false); });
+      if (!estabaAbierto) fijar(acc, true);
+    });
+  });
+
+  /* Borde carmesí que se acentúa al hacer scroll en "Sobre mí" */
+  var pendiente = false;
+  function actualizar() {
+    pendiente = false;
+    var r = sobre.getBoundingClientRect();
+    var h = window.innerHeight;
+    var p = Math.min(1, Math.max(0, (h - r.top) / (h + r.height * 0.5)));
+    marco.style.setProperty('--p', p.toFixed(3));
+  }
+  window.addEventListener('scroll', function () {
+    if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); }
+  }, { passive: true });
+  actualizar();
+
+  /* Páginas de proyecto: se abren dentro de este mismo index (no dependen del navegador ni de la dirección) */
+  var vistas = Array.prototype.slice.call(document.querySelectorAll('.cv'));
+  var principal = document.getElementById('contenido');
+  var barra = document.querySelector('.barra-movil');
+  var origen = null;
+  function vistaPorId(id) {
+    for (var i = 0; i < vistas.length; i++) { if (vistas[i].id === id) return vistas[i]; }
+    return null;
+  }
+  function vistaAbierta() {
+    for (var i = 0; i < vistas.length; i++) { if (!vistas[i].hidden) return vistas[i]; }
+    return null;
+  }
+  function mostrar(vista) {
+    vistas.forEach(function (v) { v.hidden = (v !== vista); });
+    document.documentElement.style.overflow = vista ? 'hidden' : '';
+    principal.inert = !!vista;
+    barra.inert = !!vista;
+    if (vista) { vista.scrollTop = 0; vista.focus({ preventScroll: true }); }
+  }
+  function direccion(h) { try { history.pushState(null, '', h); } catch (err) {} }
+  function irA(id) {
+    var destino = document.getElementById(id);
+    if (!destino) return;
+    var vista = vistaPorId(id);
+    if (vista) { mostrar(vista); direccion('#' + id); return; }
+    if (vistaAbierta()) mostrar(null);
+    destino.scrollIntoView();
+    direccion('#' + id);
+    if (origen) { origen.focus({ preventScroll: true }); origen = null; }
+  }
+  document.addEventListener('click', function (e) {
+    var enlace = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!enlace) return;
+    var id = enlace.getAttribute('href').slice(1);
+    if (!id || !document.getElementById(id)) return;
+    e.preventDefault();
+    if (vistaPorId(id)) origen = enlace;
+    irA(id);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && vistaAbierta()) irA('proyectos');
+  });
+  function sincronizar() {
+    var vista = vistaPorId(location.hash.slice(1));
+    if (vista || vistaAbierta()) mostrar(vista);
+  }
+  window.addEventListener('popstate', sincronizar);
+  window.addEventListener('hashchange', sincronizar);
+  sincronizar();
+})();
+</script>
+</body>
+</html>
